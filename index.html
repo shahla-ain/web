@@ -8,21 +8,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
-/* ================= THEME ================= */
 :root{
   --bg:#000;
-  --card:rgba(255,255,255,0.06);
+  --card:rgba(255,255,255,0.08);
   --text:#fff;
   --neon:#00ffee;
   --glow:0 0 15px #00ffee;
-}
-
-.light{
-  --bg:#f6f7fb;
-  --card:rgba(255,255,255,0.85);
-  --text:#0f172a;
-  --neon:#4f46e5;
-  --glow:0 0 12px rgba(79,70,229,.4);
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
@@ -32,98 +23,45 @@ body{
   background:var(--bg);
   color:var(--text);
   font-family:'Poppins',sans-serif;
-  transition:.4s;
   position:relative;
-  overflow-x:hidden;
 }
 
-/* ===== BACKGROUND IMAGE ===== */
+/* BACKGROUND */
 body::before{
   content:"";
   position:fixed;
   inset:0;
   background:
-    linear-gradient(
-      rgba(0,0,0,.75),
-      rgba(0,0,0,.85)
-    ),
+    linear-gradient(rgba(0,0,0,.85),rgba(0,0,0,.9)),
     url("bg.jpg") center/cover no-repeat;
   z-index:-1;
 }
 
-.light body::before{
-  background:
-    linear-gradient(
-      rgba(246,247,251,.85),
-      rgba(246,247,251,.9)
-    ),
-    url("bg.jpg") center/cover no-repeat;
-}
-
-/* ================= HEADER ================= */
+/* HEADER */
 header{
   position:fixed;
   top:0;
   width:100%;
   z-index:10;
   padding:15px 8%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
   backdrop-filter:blur(12px);
-  background:rgba(0,0,0,.4);
-}
-
-.light header{
-  background:rgba(255,255,255,.6);
+  background:rgba(0,0,0,.45);
 }
 
 .logo{
   font-family:'Orbitron',sans-serif;
-  letter-spacing:2px;
   color:var(--neon);
+  letter-spacing:2px;
 }
 
-/* ================= TOGGLE ================= */
-.toggle{
-  width:50px;
-  height:26px;
-  border-radius:20px;
-  background:var(--card);
-  position:relative;
-  cursor:pointer;
-}
-
-.toggle::after{
-  content:"";
-  position:absolute;
-  width:20px;
-  height:20px;
-  top:3px;
-  left:4px;
-  border-radius:50%;
-  background:var(--neon);
-  transition:.4s;
-}
-
-.light .toggle::after{
-  transform:translateX(24px);
-}
-
-/* ================= HERO ================= */
+/* HERO */
 .hero{
-  min-height:100vh;
+  min-height:90vh;
   display:flex;
-  align-items:center;
   justify-content:center;
+  align-items:center;
   text-align:center;
   padding:120px 8% 60px;
-}
-
-@media(min-width:1024px){
-  .hero{
-    min-height:80vh;
-  }
 }
 
 .hero img{
@@ -134,13 +72,6 @@ header{
   box-shadow:var(--glow);
 }
 
-@media(min-width:1024px){
-  .hero img{
-    width:160px;
-    height:160px;
-  }
-}
-
 .hero h1{
   margin-top:16px;
   font-family:'Orbitron',sans-serif;
@@ -148,100 +79,121 @@ header{
 }
 
 .typing{
-  margin-top:6px;
   color:var(--neon);
-  min-height:24px;
+  margin-top:6px;
 }
 
-/* ================= SECTIONS ================= */
-section{padding:80px 8%}
+.btn{
+  display:inline-block;
+  margin-top:20px;
+  padding:12px 28px;
+  border:1px solid var(--neon);
+  border-radius:30px;
+  color:var(--neon);
+  text-decoration:none;
+}
+.btn:hover{
+  background:var(--neon);
+  color:#000;
+  box-shadow:var(--glow);
+}
 
+/* SECTIONS */
+section{padding:80px 8%}
 .title{
   font-family:'Orbitron',sans-serif;
   color:var(--neon);
-  margin-bottom:25px;
+  margin-bottom:30px;
 }
 
-/* ================= GLASS ================= */
+/* GLASS */
 .glass{
   background:var(--card);
   border-radius:16px;
   padding:25px;
   backdrop-filter:blur(14px);
-  box-shadow:0 0 30px rgba(0,0,0,.25);
 }
 
-/* ================= ABOUT ================= */
+/* ABOUT */
 .about{line-height:1.9}
 
-/* ================= SKILLS ================= */
-.skills{
+/* SKILL GRID */
+.skill-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-  gap:18px;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:24px;
 }
 
-.skill{
+.skill-box{
+  padding:30px;
+  border-radius:16px;
   text-align:center;
-  font-family:'Orbitron',sans-serif;
-  font-size:.9rem;
+  cursor:pointer;
+  border:1px solid rgba(255,255,255,.15);
+  transition:.3s;
 }
 
-.skill span{
-  font-size:1.8rem;
+.skill-box:hover{
+  box-shadow:var(--glow);
+  transform:translateY(-6px);
+}
+
+.skill-box span{
+  font-size:2rem;
   display:block;
-  margin-bottom:8px;
+  margin-bottom:12px;
   color:var(--neon);
 }
 
-/* ================= CONTACT ================= */
+/* POPUP */
+.popup{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.75);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:20;
+}
+
+.popup-content{
+  max-width:400px;
+  width:90%;
+  background:var(--card);
+  padding:30px;
+  border-radius:18px;
+  position:relative;
+  backdrop-filter:blur(16px);
+}
+
+.popup-content h3{
+  color:var(--neon);
+  margin-bottom:15px;
+  font-family:'Orbitron',sans-serif;
+}
+
+.popup-content ul{
+  list-style:none;
+  line-height:1.8;
+}
+
+.close{
+  position:absolute;
+  top:12px;
+  right:16px;
+  font-size:1.4rem;
+  cursor:pointer;
+  color:var(--neon);
+}
+
+/* CONTACT */
 .contact form{
   display:flex;
   flex-direction:column;
   gap:12px;
 }
 
-.contact label{
-  font-size:.9rem;
-  color:var(--neon);
-}
-
-.contact select,
-.contact input,
-.contact textarea{
-  background:transparent;
-  border:1px solid rgba(255,255,255,.25);
-  padding:10px 12px;
-  border-radius:8px;
-  color:var(--text);
-  font-family:inherit;
-}
-
-.light .contact select,
-.light .contact input,
-.light .contact textarea{
-  border:1px solid #ccc;
-}
-
-.contact textarea{resize:none}
-
-.contact button{
-  margin-top:10px;
-  padding:12px;
-  border-radius:30px;
-  border:none;
-  cursor:pointer;
-  background:var(--neon);
-  color:#000;
-  font-weight:600;
-  transition:.3s;
-}
-
-.contact button:hover{
-  box-shadow:var(--glow);
-}
-
-/* ================= FOOTER ================= */
+/* FOOTER */
 footer{
   text-align:center;
   padding:40px 20px;
@@ -250,17 +202,13 @@ footer{
   border-top:1px solid rgba(255,255,255,.15);
 }
 
-/* ================= REVEAL ================= */
+/* REVEAL */
 .reveal{
   opacity:0;
   transform:translateY(30px);
   transition:1s;
 }
-
-.reveal.active{
-  opacity:1;
-  transform:none;
-}
+.reveal.active{opacity:1;transform:none}
 </style>
 </head>
 
@@ -268,15 +216,15 @@ footer{
 
 <header>
   <div class="logo">ASH1K.exe</div>
-  <div class="toggle" onclick="toggleTheme()"></div>
 </header>
 
 <!-- HERO -->
 <div class="hero">
   <div>
-    <img src="bg.jpg" alt="Ashik profile">
+    <img src="bg.jpg">
     <h1>I’m Ashik</h1>
     <div class="typing" id="typing"></div>
+    <a href="resume.pdf" class="btn" download>Download Resume</a>
   </div>
 </div>
 
@@ -284,50 +232,52 @@ footer{
 <section class="reveal">
   <h2 class="title">About Me</h2>
   <div class="glass about">
-    I enjoy understanding how systems work and why they fail.
-    Currently learning cyber security and web technologies,
-    focusing on clarity, patience, and long-term growth.
+    I’m focused on learning, creating, and improving consistently.
+    My interests span cyber security, web technologies, and digital design.
   </div>
 </section>
 
 <!-- SKILLS -->
 <section class="reveal">
   <h2 class="title">Skills</h2>
-  <div class="skills">
-    <div class="glass skill"><span>💻</span>HTML / CSS</div>
-    <div class="glass skill"><span>⚙️</span>JavaScript</div>
-    <div class="glass skill"><span>🛡️</span>Cyber Security</div>
-    <div class="glass skill"><span>🐧</span>Linux / Termux</div>
-    <div class="glass skill"><span>🔐</span>Ethical Hacking</div>
-    <div class="glass skill"><span>➕</span>Add More Later</div>
+
+  <div class="skill-grid">
+    <div class="glass skill-box" onclick="openPopup('web')">
+      <span>💻</span>Web & Cyber
+    </div>
+    <div class="glass skill-box" onclick="openPopup('design')">
+      <span>🎨</span>Graphic Design
+    </div>
+    <div class="glass skill-box" onclick="openPopup('office')">
+      <span>📊</span>Microsoft Office
+    </div>
+    <div class="glass skill-box" onclick="openPopup('system')">
+      <span>🖥️</span>Computer & Terminal
+    </div>
   </div>
 </section>
+
+<!-- POPUP -->
+<div class="popup" id="popup">
+  <div class="popup-content">
+    <div class="close" onclick="closePopup()">×</div>
+    <h3 id="popupTitle"></h3>
+    <ul id="popupList"></ul>
+  </div>
+</div>
 
 <!-- CONTACT -->
 <section class="reveal">
   <h2 class="title">Contact</h2>
   <div class="glass contact">
     <form id="contactForm">
-
-      <label>Subject</label>
-      <select id="subject" required>
-        <option value="">Select a subject</option>
-        <option value="Collaboration Inquiry">Collaboration Inquiry</option>
-        <option value="Project Discussion">Project Discussion</option>
-        <option value="Feedback">Feedback</option>
-        <option value="Other">Other</option>
+      <select id="subject">
+        <option>Collaboration</option>
+        <option>Project Discussion</option>
+        <option>Feedback</option>
       </select>
-
-      <input type="text" id="customSubject" placeholder="Custom subject" style="display:none">
-
-      <label>Message</label>
-      <textarea id="message" rows="5" placeholder="Write your message here..." required></textarea>
-
-      <label id="captchaLabel"></label>
-      <input type="text" id="captchaInput" placeholder="Your answer" required>
-
+      <textarea id="message" rows="5" placeholder="Write your message..."></textarea>
       <button type="submit">Send Email</button>
-
     </form>
   </div>
 </section>
@@ -337,8 +287,8 @@ footer{
 </footer>
 
 <script>
-/* ================= TYPING ================= */
-const text=["Cyber Security Learner","Silent Builder","Minimal • Focused"];
+/* TYPING */
+const text=["Cyber Security Learner","Creative Technologist","Silent Builder"];
 let i=0,j=0,t=document.getElementById("typing");
 (function type(){
   if(j<text[i].length){t.textContent+=text[i][j++];setTimeout(type,80)}
@@ -349,47 +299,42 @@ function erase(){
   else{i=(i+1)%text.length;setTimeout(type,300)}
 }
 
-/* ================= REVEAL ================= */
-document.addEventListener("scroll",()=>{
+/* POPUP DATA */
+const skills={
+  web:["HTML","CSS","JavaScript","Cyber Security Basics","Ethical Hacking"],
+  design:["Photoshop","Illustrator","InDesign","CorelDRAW","Canva"],
+  office:["Word","Excel","PowerPoint"],
+  system:["Windows","Ubuntu","Kali Linux","Terminal / CLI"]
+};
+
+let timer;
+function openPopup(type){
+  clearTimeout(timer);
+  popup.style.display="flex";
+  popupTitle.textContent=type.toUpperCase();
+  popupList.innerHTML=skills[type].map(s=>`<li>• ${s}</li>`).join("");
+  timer=setTimeout(closePopup,10000);
+}
+
+function closePopup(){
+  popup.style.display="none";
+}
+
+/* CLOSE ON BACKDROP */
+popup.onclick=e=>{if(e.target===popup) closePopup()}
+
+/* REVEAL */
+addEventListener("scroll",()=>{
   document.querySelectorAll(".reveal").forEach(r=>{
     if(r.getBoundingClientRect().top<innerHeight-100) r.classList.add("active")
   })
-})
-
-/* ================= THEME ================= */
-if(localStorage.theme==="light") document.body.classList.add("light");
-function toggleTheme(){
-  document.body.classList.toggle("light");
-  localStorage.theme=document.body.classList.contains("light")?"light":"dark";
-}
-
-/* ================= CONTACT ================= */
-const subjectSelect=document.getElementById("subject");
-const customSubject=document.getElementById("customSubject");
-const form=document.getElementById("contactForm");
-
-subjectSelect.addEventListener("change",()=>{
-  customSubject.style.display=subjectSelect.value==="Other"?"block":"none";
 });
 
-let a=Math.floor(Math.random()*10)+1;
-let b=Math.floor(Math.random()*10)+1;
-document.getElementById("captchaLabel").textContent=`Human check: ${a} + ${b} = ?`;
-
-form.addEventListener("submit",e=>{
+/* CONTACT */
+contactForm.onsubmit=e=>{
   e.preventDefault();
-  if(parseInt(captchaInput.value)!==a+b){
-    alert("Captcha incorrect");
-    return;
-  }
-  let subject=subjectSelect.value==="Other"?customSubject.value.trim():subjectSelect.value;
-  if(!subject){alert("Enter subject");return;}
-  const body=message.value.trim();
-  if(!body){alert("Message empty");return;}
-
-  window.location.href=
-    `mailto:yourmail@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-});
+  location.href=`mailto:yourmail@gmail.com?subject=${subject.value}&body=${message.value}`;
+};
 </script>
 
 </body>
