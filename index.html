@@ -23,7 +23,6 @@ body{
   background:var(--bg);
   color:var(--text);
   font-family:'Poppins',sans-serif;
-  position:relative;
 }
 
 /* BACKGROUND */
@@ -58,8 +57,8 @@ header{
 .hero{
   min-height:90vh;
   display:flex;
-  justify-content:center;
   align-items:center;
+  justify-content:center;
   text-align:center;
   padding:120px 8% 60px;
 }
@@ -75,13 +74,9 @@ header{
 .hero h1{
   margin-top:16px;
   font-family:'Orbitron',sans-serif;
-  font-size:clamp(2rem,5vw,3rem);
 }
 
-.typing{
-  color:var(--neon);
-  margin-top:6px;
-}
+.typing{color:var(--neon)}
 
 .btn{
   display:inline-block;
@@ -92,11 +87,7 @@ header{
   color:var(--neon);
   text-decoration:none;
 }
-.btn:hover{
-  background:var(--neon);
-  color:#000;
-  box-shadow:var(--glow);
-}
+.btn:hover{background:var(--neon);color:#000}
 
 /* SECTIONS */
 section{padding:80px 8%}
@@ -114,10 +105,7 @@ section{padding:80px 8%}
   backdrop-filter:blur(14px);
 }
 
-/* ABOUT */
-.about{line-height:1.9}
-
-/* SKILL GRID */
+/* SKILLS GRID */
 .skill-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
@@ -125,62 +113,50 @@ section{padding:80px 8%}
 }
 
 .skill-box{
-  padding:30px;
-  border-radius:16px;
   text-align:center;
+  padding:30px;
   cursor:pointer;
-  border:1px solid rgba(255,255,255,.15);
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.2);
   transition:.3s;
 }
-
 .skill-box:hover{
-  box-shadow:var(--glow);
   transform:translateY(-6px);
+  box-shadow:var(--glow);
 }
-
 .skill-box span{
   font-size:2rem;
-  display:block;
-  margin-bottom:12px;
   color:var(--neon);
+  display:block;
 }
 
 /* POPUP */
 .popup{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.75);
+  background:rgba(0,0,0,.8);
   display:none;
   justify-content:center;
   align-items:center;
   z-index:20;
 }
+.popup.active{display:flex}
 
 .popup-content{
-  max-width:400px;
-  width:90%;
   background:var(--card);
   padding:30px;
   border-radius:18px;
-  position:relative;
-  backdrop-filter:blur(16px);
+  width:90%;
+  max-width:420px;
+  animation:pop .3s ease;
 }
-
-.popup-content h3{
-  color:var(--neon);
-  margin-bottom:15px;
-  font-family:'Orbitron',sans-serif;
-}
-
-.popup-content ul{
-  list-style:none;
-  line-height:1.8;
+@keyframes pop{
+  from{opacity:0;transform:scale(.9)}
+  to{opacity:1;transform:scale(1)}
 }
 
 .close{
-  position:absolute;
-  top:12px;
-  right:16px;
+  float:right;
   font-size:1.4rem;
   cursor:pointer;
   color:var(--neon);
@@ -192,33 +168,50 @@ section{padding:80px 8%}
   flex-direction:column;
   gap:12px;
 }
+.contact input,
+.contact select,
+.contact textarea{
+  background:transparent;
+  border:1px solid rgba(255,255,255,.3);
+  padding:10px;
+  color:#fff;
+  border-radius:8px;
+}
+.contact button{
+  background:var(--neon);
+  color:#000;
+  border:none;
+  padding:12px;
+  border-radius:30px;
+  cursor:pointer;
+}
+
+/* TOAST */
+.toast{
+  position:fixed;
+  bottom:30px;
+  right:30px;
+  background:#111;
+  color:#0f0;
+  padding:14px 20px;
+  border-radius:10px;
+  display:none;
+}
 
 /* FOOTER */
 footer{
   text-align:center;
-  padding:40px 20px;
+  padding:40px;
   color:#aaa;
-  font-size:.9rem;
   border-top:1px solid rgba(255,255,255,.15);
 }
-
-/* REVEAL */
-.reveal{
-  opacity:0;
-  transform:translateY(30px);
-  transition:1s;
-}
-.reveal.active{opacity:1;transform:none}
 </style>
 </head>
 
 <body>
 
-<header>
-  <div class="logo">ASH1K.exe</div>
-</header>
+<header><div class="logo">ASH1K.exe</div></header>
 
-<!-- HERO -->
 <div class="hero">
   <div>
     <img src="bg.jpg">
@@ -228,112 +221,84 @@ footer{
   </div>
 </div>
 
-<!-- ABOUT -->
-<section class="reveal">
-  <h2 class="title">About Me</h2>
-  <div class="glass about">
-    I’m focused on learning, creating, and improving consistently.
-    My interests span cyber security, web technologies, and digital design.
-  </div>
-</section>
-
-<!-- SKILLS -->
-<section class="reveal">
+<section>
   <h2 class="title">Skills</h2>
-
   <div class="skill-grid">
-    <div class="glass skill-box" onclick="openPopup('web')">
-      <span>💻</span>Web & Cyber
-    </div>
-    <div class="glass skill-box" onclick="openPopup('design')">
-      <span>🎨</span>Graphic Design
-    </div>
-    <div class="glass skill-box" onclick="openPopup('office')">
-      <span>📊</span>Microsoft Office
-    </div>
-    <div class="glass skill-box" onclick="openPopup('system')">
-      <span>🖥️</span>Computer & Terminal
-    </div>
+    <div class="glass skill-box" onclick="openPopup('web')"><span>💻</span>Web & Cyber</div>
+    <div class="glass skill-box" onclick="openPopup('design')"><span>🎨</span>Graphic Design</div>
+    <div class="glass skill-box" onclick="openPopup('office')"><span>📊</span>Microsoft Office</div>
+    <div class="glass skill-box" onclick="openPopup('system')"><span>🖥️</span>Computer & Terminal</div>
   </div>
 </section>
 
-<!-- POPUP -->
-<div class="popup" id="popup">
+<div class="popup" id="popup" tabindex="-1">
   <div class="popup-content">
-    <div class="close" onclick="closePopup()">×</div>
+    <span class="close" onclick="closePopup()">×</span>
     <h3 id="popupTitle"></h3>
     <ul id="popupList"></ul>
   </div>
 </div>
 
-<!-- CONTACT -->
-<section class="reveal">
+<section>
   <h2 class="title">Contact</h2>
   <div class="glass contact">
     <form id="contactForm">
+      <input id="name" placeholder="Your name" required>
+      <input id="email" type="email" placeholder="Your email" required>
       <select id="subject">
         <option>Collaboration</option>
         <option>Project Discussion</option>
         <option>Feedback</option>
       </select>
-      <textarea id="message" rows="5" placeholder="Write your message..."></textarea>
+      <textarea id="message" placeholder="Message" required></textarea>
+      <label id="captchaLabel"></label>
+      <input id="captchaInput" placeholder="Answer" required>
       <button type="submit">Send Email</button>
     </form>
   </div>
 </section>
 
-<footer>
-  © 2026 Ashik Muhammed · Built with intention
-</footer>
+<footer>© 2026 Ashik Muhammed</footer>
+<div class="toast" id="toast">Email ready to send ✔</div>
 
 <script>
 /* TYPING */
 const text=["Cyber Security Learner","Creative Technologist","Silent Builder"];
 let i=0,j=0,t=document.getElementById("typing");
-(function type(){
-  if(j<text[i].length){t.textContent+=text[i][j++];setTimeout(type,80)}
-  else setTimeout(erase,1400)
-})();
-function erase(){
-  if(j>0){t.textContent=text[i].slice(0,--j);setTimeout(erase,40)}
-  else{i=(i+1)%text.length;setTimeout(type,300)}
-}
+(function type(){j<text[i].length?(t.textContent+=text[i][j++],setTimeout(type,80)):setTimeout(erase,1200)})();
+function erase(){j?(t.textContent=text[i].slice(0,--j),setTimeout(erase,40)):(i=(i+1)%text.length,setTimeout(type,300))}
 
-/* POPUP DATA */
+/* POPUP */
 const skills={
-  web:["HTML","CSS","JavaScript","Cyber Security Basics","Ethical Hacking"],
+  web:["HTML","CSS","JavaScript","Cyber Security","Ethical Hacking"],
   design:["Photoshop","Illustrator","InDesign","CorelDRAW","Canva"],
   office:["Word","Excel","PowerPoint"],
-  system:["Windows","Ubuntu","Kali Linux","Terminal / CLI"]
+  system:["Windows","Ubuntu","Kali Linux","Terminal"]
 };
-
 let timer;
 function openPopup(type){
-  clearTimeout(timer);
-  popup.style.display="flex";
+  popup.classList.add("active");
   popupTitle.textContent=type.toUpperCase();
   popupList.innerHTML=skills[type].map(s=>`<li>• ${s}</li>`).join("");
+  clearTimeout(timer);
   timer=setTimeout(closePopup,10000);
 }
-
-function closePopup(){
-  popup.style.display="none";
-}
-
-/* CLOSE ON BACKDROP */
-popup.onclick=e=>{if(e.target===popup) closePopup()}
-
-/* REVEAL */
-addEventListener("scroll",()=>{
-  document.querySelectorAll(".reveal").forEach(r=>{
-    if(r.getBoundingClientRect().top<innerHeight-100) r.classList.add("active")
-  })
-});
+function closePopup(){popup.classList.remove("active")}
+popup.onclick=e=>{if(e.target===popup)closePopup()}
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closePopup()});
 
 /* CONTACT */
+let a=Math.floor(Math.random()*10)+1,b=Math.floor(Math.random()*10)+1;
+captchaLabel.textContent=`Human check: ${a}+${b}=?`;
 contactForm.onsubmit=e=>{
   e.preventDefault();
-  location.href=`mailto:yourmail@gmail.com?subject=${subject.value}&body=${message.value}`;
+  if(+captchaInput.value!==a+b)return;
+  const mail=
+   `mailto:yourmail@gmail.com?subject=${encodeURIComponent(subject.value)}&body=`+
+   encodeURIComponent(`From: ${name.value} (${email.value})\n\n${message.value}`);
+  toast.style.display="block";
+  setTimeout(()=>toast.style.display="none",3000);
+  window.location.href=mail;
 };
 </script>
 
