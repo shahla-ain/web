@@ -20,7 +20,7 @@
 html{scroll-behavior:smooth}
 
 body{
-  background:var(--bg);
+  background:#000;
   color:var(--text);
   font-family:'Poppins',sans-serif;
 }
@@ -41,12 +41,11 @@ header{
   position:fixed;
   top:0;
   width:100%;
-  z-index:10;
   padding:15px 8%;
   backdrop-filter:blur(12px);
-  background:rgba(0,0,0,.45);
+  background:rgba(0,0,0,.5);
+  z-index:10;
 }
-
 .logo{
   font-family:'Orbitron',sans-serif;
   color:var(--neon);
@@ -57,12 +56,11 @@ header{
 .hero{
   min-height:90vh;
   display:flex;
-  align-items:center;
   justify-content:center;
+  align-items:center;
   text-align:center;
   padding:120px 8% 60px;
 }
-
 .hero img{
   width:140px;
   height:140px;
@@ -70,14 +68,11 @@ header{
   border:2px solid var(--neon);
   box-shadow:var(--glow);
 }
-
 .hero h1{
   margin-top:16px;
   font-family:'Orbitron',sans-serif;
 }
-
 .typing{color:var(--neon)}
-
 .btn{
   display:inline-block;
   margin-top:20px;
@@ -106,18 +101,14 @@ section{padding:80px 8%}
 }
 
 /* ABOUT */
-.about{
-  line-height:1.9;
-  font-size:.95rem;
-}
+.about{line-height:1.9}
 
-/* SKILLS GRID */
+/* SKILLS */
 .skill-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   gap:24px;
 }
-
 .skill-box{
   text-align:center;
   padding:30px;
@@ -126,10 +117,7 @@ section{padding:80px 8%}
   border:1px solid rgba(255,255,255,.2);
   transition:.3s;
 }
-.skill-box:hover{
-  transform:translateY(-6px);
-  box-shadow:var(--glow);
-}
+.skill-box:hover{transform:translateY(-6px);box-shadow:var(--glow)}
 .skill-box span{
   font-size:2rem;
   color:var(--neon);
@@ -140,14 +128,13 @@ section{padding:80px 8%}
 .popup{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.8);
+  background:rgba(0,0,0,.85);
   display:none;
   justify-content:center;
   align-items:center;
   z-index:20;
 }
 .popup.active{display:flex}
-
 .popup-content{
   background:var(--card);
   padding:30px;
@@ -160,7 +147,6 @@ section{padding:80px 8%}
   from{opacity:0;transform:scale(.9)}
   to{opacity:1;transform:scale(1)}
 }
-
 .close{
   float:right;
   font-size:1.4rem;
@@ -169,35 +155,14 @@ section{padding:80px 8%}
 }
 
 /* CERTIFICATIONS */
-.cert-list{
-  display:flex;
-  flex-direction:column;
-  gap:16px;
-}
-
 .cert{
   border:1px solid rgba(255,255,255,.2);
   border-radius:12px;
   padding:18px;
+  margin-bottom:16px;
 }
-
-.cert h4{
-  color:var(--neon);
-  margin-bottom:6px;
-  font-weight:500;
-}
-
-.cert small{
-  color:#aaa;
-}
-
-.cert a{
-  display:inline-block;
-  margin-top:8px;
-  font-size:.85rem;
-  color:var(--neon);
-  text-decoration:none;
-}
+.cert h4{color:var(--neon);margin-bottom:6px}
+.cert small{color:#aaa}
 
 /* CONTACT */
 .contact form{
@@ -242,27 +207,17 @@ footer{
   color:#aaa;
   border-top:1px solid rgba(255,255,255,.15);
 }
-
-/* REVEAL */
-.reveal{
-  opacity:0;
-  transform:translateY(30px);
-  transition:1s;
-}
-.reveal.active{opacity:1;transform:none}
 </style>
 </head>
 
 <body>
 
-<header>
-  <div class="logo">ASH1K.exe</div>
-</header>
+<header><div class="logo">ASH1K.exe</div></header>
 
 <!-- HERO -->
 <div class="hero">
   <div>
-    <img src="bg.jpg" alt="Ashik">
+    <img src="bg.jpg" alt="profile">
     <h1>I’m Ashik</h1>
     <div class="typing" id="typing"></div>
     <a href="resume.pdf" class="btn" download>Download Resume</a>
@@ -270,19 +225,17 @@ footer{
 </div>
 
 <!-- ABOUT -->
-<section class="reveal">
+<section>
   <h2 class="title">About Me</h2>
   <div class="glass about">
-    I’m someone who enjoys understanding systems deeply — how they are built,
-    how they fail, and how they can be improved.  
-    My interests include cyber security, web technologies, operating systems,
-    and creative digital design.  
-    I value patience, consistency, and skills that compound over time.
+    I focus on understanding systems deeply — how they work, how they fail,
+    and how they can be improved. My interests include cyber security,
+    web development, operating systems, and digital design.
   </div>
 </section>
 
 <!-- SKILLS -->
-<section class="reveal">
+<section>
   <h2 class="title">Skills</h2>
   <div class="skill-grid">
     <div class="glass skill-box" onclick="openPopup('web')"><span>💻</span>Web & Cyber</div>
@@ -293,7 +246,7 @@ footer{
 </section>
 
 <!-- POPUP -->
-<div class="popup" id="popup" tabindex="-1">
+<div class="popup" id="popup">
   <div class="popup-content">
     <span class="close" onclick="closePopup()">×</span>
     <h3 id="popupTitle"></h3>
@@ -302,28 +255,22 @@ footer{
 </div>
 
 <!-- CERTIFICATIONS -->
-<section class="reveal">
+<section>
   <h2 class="title">Certifications</h2>
-  <div class="glass cert-list">
-
+  <div class="glass">
     <div class="cert">
       <h4>Cyber Security Fundamentals</h4>
-      <small>Issued by XYZ Platform · 2024</small><br>
-      <a href="#">View Certificate</a>
+      <small>XYZ Platform · 2024</small>
     </div>
-
     <div class="cert">
       <h4>Graphic Design Basics</h4>
-      <small>Issued by ABC Institute · 2023</small>
+      <small>ABC Institute · 2023</small>
     </div>
-
-    <!-- Add more certifications here -->
-
   </div>
 </section>
 
 <!-- CONTACT -->
-<section class="reveal">
+<section>
   <h2 class="title">Contact</h2>
   <div class="glass contact">
     <form id="contactForm">
@@ -343,7 +290,7 @@ footer{
 </section>
 
 <footer>© 2026 Ashik Muhammed</footer>
-<div class="toast" id="toast">Email ready to send ✔</div>
+<div class="toast" id="toast">Email ready ✔</div>
 
 <script>
 /* TYPING */
@@ -352,7 +299,7 @@ let i=0,j=0,t=document.getElementById("typing");
 (function type(){j<text[i].length?(t.textContent+=text[i][j++],setTimeout(type,80)):setTimeout(erase,1200)})();
 function erase(){j?(t.textContent=text[i].slice(0,--j),setTimeout(erase,40)):(i=(i+1)%text.length,setTimeout(type,300))}
 
-/* POPUP DATA */
+/* POPUP */
 const skills={
   web:["HTML","CSS","JavaScript","Cyber Security","Ethical Hacking"],
   design:["Photoshop","Illustrator","InDesign","CorelDRAW","Canva"],
@@ -378,8 +325,8 @@ contactForm.onsubmit=e=>{
   e.preventDefault();
   if(+captchaInput.value!==a+b)return;
   const mail=
-   `mailto:yourmail@gmail.com?subject=${encodeURIComponent(subject.value)}&body=`+
-   encodeURIComponent(`From: ${name.value} (${email.value})\n\n${message.value}`);
+    `mailto:yourmail@gmail.com?subject=${encodeURIComponent(subject.value)}&body=`+
+    encodeURIComponent(`From: ${name.value} (${email.value})\n\n${message.value}`);
   toast.style.display="block";
   setTimeout(()=>toast.style.display="none",3000);
   window.location.href=mail;
