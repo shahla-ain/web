@@ -154,15 +154,34 @@ section{padding:80px 8%}
   color:var(--neon);
 }
 
-/* CERTIFICATIONS */
-.cert{
-  border:1px solid rgba(255,255,255,.2);
-  border-radius:12px;
-  padding:18px;
-  margin-bottom:16px;
+/* CERTIFICATIONS (NEW LAYOUT) */
+.cert-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:24px;
 }
-.cert h4{color:var(--neon);margin-bottom:6px}
-.cert small{color:#aaa}
+
+.cert-box h3{
+  color:var(--neon);
+  margin-bottom:15px;
+  font-family:'Orbitron',sans-serif;
+}
+
+.cert-item{
+  margin-bottom:14px;
+}
+
+.cert-item strong{
+  display:block;
+  margin-bottom:4px;
+}
+
+.cert-note{
+  margin-top:15px;
+  font-size:.9rem;
+  color:#ccc;
+  line-height:1.6;
+}
 
 /* CONTACT */
 .contact form{
@@ -212,13 +231,13 @@ footer{
 
 <body>
 
-<header><div class="logo">ASH1K.exe</div></header>
+<header><div class="logo">Ashik Muhammed</div></header>
 
 <!-- HERO -->
 <div class="hero">
   <div>
     <img src="bg.jpg" alt="profile">
-    <h1>I’m Ashik</h1>
+    <h1>I’m Ashik Muhammed</h1>
     <div class="typing" id="typing"></div>
     <a href="resume.pdf" class="btn" download>Download Resume</a>
   </div>
@@ -257,15 +276,49 @@ footer{
 <!-- CERTIFICATIONS -->
 <section>
   <h2 class="title">Certifications</h2>
-  <div class="glass">
-    <div class="cert">
-      <h4>Cyber Security Fundamentals</h4>
-      <small>XYZ Platform · 2024</small>
+
+  <div class="cert-grid">
+
+    <!-- Professional Qualifications -->
+    <div class="glass cert-box">
+      <h3>Professional Qualifications</h3>
+
+      <div class="cert-item">
+        <strong>Cyber Security Fundamentals</strong>
+        <small>XYZ Platform · 2024</small>
+      </div>
+
+      <div class="cert-item">
+        <strong>Ethical Hacking Basics</strong>
+        <small>Online Training · 2023</small>
+      </div>
+
+      <div class="cert-note">
+        Formal and career-oriented qualifications focused on
+        security, systems, and professional skill development.
+      </div>
     </div>
-    <div class="cert">
-      <h4>Graphic Design Basics</h4>
-      <small>ABC Institute · 2023</small>
+
+    <!-- Other Certifications -->
+    <div class="glass cert-box">
+      <h3>Other Certifications</h3>
+
+      <div class="cert-item">
+        <strong>Graphic Design Basics</strong>
+        <small>ABC Institute · 2023</small>
+      </div>
+
+      <div class="cert-item">
+        <strong>MS Office Productivity</strong>
+        <small>Self-Learning</small>
+      </div>
+
+      <div class="cert-note">
+        Additional certifications, workshops, and self-learning
+        achievements that support creativity and productivity.
+      </div>
     </div>
+
   </div>
 </section>
 
