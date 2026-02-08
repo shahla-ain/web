@@ -95,6 +95,13 @@ header{
   padding:120px 8% 60px;
 }
 
+@media(min-width:1024px){
+  .hero{
+    min-height:80vh;
+    padding-top:120px;
+  }
+}
+
 .hero img{
   width:140px;
   height:140px;
@@ -103,14 +110,21 @@ header{
   box-shadow:var(--glow);
 }
 
+@media(min-width:1024px){
+  .hero img{
+    width:160px;
+    height:160px;
+  }
+}
+
 .hero h1{
-  margin-top:20px;
+  margin-top:16px;
   font-family:'Orbitron',sans-serif;
   font-size:clamp(2rem,5vw,3rem);
 }
 
 .typing{
-  margin-top:10px;
+  margin-top:6px;
   color:var(--neon);
   min-height:24px;
 }
@@ -211,7 +225,7 @@ footer{
   border-top:1px solid rgba(255,255,255,.1);
 }
 
-/* ================= ANIMATION ================= */
+/* ================= REVEAL ================= */
 .reveal{
   opacity:0;
   transform:translateY(30px);
@@ -235,7 +249,7 @@ footer{
 <!-- HERO -->
 <div class="hero">
   <div>
-    <img src="https://i.imgur.com/4Z7ZQZC.png" alt="Profile">
+    <img src="assets/profile.jpg" alt="Ashik profile">
     <h1>I’m Ashik</h1>
     <div class="typing" id="typing"></div>
   </div>
@@ -310,7 +324,7 @@ function erase(){
   else{i=(i+1)%text.length;setTimeout(type,300)}
 }
 
-/* ================= SCROLL ================= */
+/* ================= REVEAL ================= */
 document.addEventListener("scroll",()=>{
   document.querySelectorAll(".reveal").forEach(r=>{
     if(r.getBoundingClientRect().top<innerHeight-100) r.classList.add("active")
@@ -324,7 +338,7 @@ function toggleTheme(){
   localStorage.theme=document.body.classList.contains("light")?"light":"dark";
 }
 
-/* ================= CONTACT FORM ================= */
+/* ================= CONTACT ================= */
 const subjectSelect=document.getElementById("subject");
 const customSubject=document.getElementById("customSubject");
 const form=document.getElementById("contactForm");
@@ -343,10 +357,8 @@ form.addEventListener("submit",e=>{
     alert("Captcha incorrect");
     return;
   }
-
   let subject=subjectSelect.value==="Other"?customSubject.value.trim():subjectSelect.value;
   if(!subject){alert("Enter subject");return;}
-
   const body=message.value.trim();
   if(!body){alert("Message empty");return;}
 
