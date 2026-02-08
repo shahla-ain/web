@@ -105,6 +105,12 @@ section{padding:80px 8%}
   backdrop-filter:blur(14px);
 }
 
+/* ABOUT */
+.about{
+  line-height:1.9;
+  font-size:.95rem;
+}
+
 /* SKILLS GRID */
 .skill-grid{
   display:grid;
@@ -162,6 +168,37 @@ section{padding:80px 8%}
   color:var(--neon);
 }
 
+/* CERTIFICATIONS */
+.cert-list{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+
+.cert{
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:12px;
+  padding:18px;
+}
+
+.cert h4{
+  color:var(--neon);
+  margin-bottom:6px;
+  font-weight:500;
+}
+
+.cert small{
+  color:#aaa;
+}
+
+.cert a{
+  display:inline-block;
+  margin-top:8px;
+  font-size:.85rem;
+  color:var(--neon);
+  text-decoration:none;
+}
+
 /* CONTACT */
 .contact form{
   display:flex;
@@ -205,23 +242,47 @@ footer{
   color:#aaa;
   border-top:1px solid rgba(255,255,255,.15);
 }
+
+/* REVEAL */
+.reveal{
+  opacity:0;
+  transform:translateY(30px);
+  transition:1s;
+}
+.reveal.active{opacity:1;transform:none}
 </style>
 </head>
 
 <body>
 
-<header><div class="logo">ASH1K.exe</div></header>
+<header>
+  <div class="logo">ASH1K.exe</div>
+</header>
 
+<!-- HERO -->
 <div class="hero">
   <div>
-    <img src="bg.jpg">
+    <img src="bg.jpg" alt="Ashik">
     <h1>I’m Ashik</h1>
     <div class="typing" id="typing"></div>
     <a href="resume.pdf" class="btn" download>Download Resume</a>
   </div>
 </div>
 
-<section>
+<!-- ABOUT -->
+<section class="reveal">
+  <h2 class="title">About Me</h2>
+  <div class="glass about">
+    I’m someone who enjoys understanding systems deeply — how they are built,
+    how they fail, and how they can be improved.  
+    My interests include cyber security, web technologies, operating systems,
+    and creative digital design.  
+    I value patience, consistency, and skills that compound over time.
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="reveal">
   <h2 class="title">Skills</h2>
   <div class="skill-grid">
     <div class="glass skill-box" onclick="openPopup('web')"><span>💻</span>Web & Cyber</div>
@@ -231,6 +292,7 @@ footer{
   </div>
 </section>
 
+<!-- POPUP -->
 <div class="popup" id="popup" tabindex="-1">
   <div class="popup-content">
     <span class="close" onclick="closePopup()">×</span>
@@ -239,7 +301,29 @@ footer{
   </div>
 </div>
 
-<section>
+<!-- CERTIFICATIONS -->
+<section class="reveal">
+  <h2 class="title">Certifications</h2>
+  <div class="glass cert-list">
+
+    <div class="cert">
+      <h4>Cyber Security Fundamentals</h4>
+      <small>Issued by XYZ Platform · 2024</small><br>
+      <a href="#">View Certificate</a>
+    </div>
+
+    <div class="cert">
+      <h4>Graphic Design Basics</h4>
+      <small>Issued by ABC Institute · 2023</small>
+    </div>
+
+    <!-- Add more certifications here -->
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="reveal">
   <h2 class="title">Contact</h2>
   <div class="glass contact">
     <form id="contactForm">
@@ -268,12 +352,12 @@ let i=0,j=0,t=document.getElementById("typing");
 (function type(){j<text[i].length?(t.textContent+=text[i][j++],setTimeout(type,80)):setTimeout(erase,1200)})();
 function erase(){j?(t.textContent=text[i].slice(0,--j),setTimeout(erase,40)):(i=(i+1)%text.length,setTimeout(type,300))}
 
-/* POPUP */
+/* POPUP DATA */
 const skills={
   web:["HTML","CSS","JavaScript","Cyber Security","Ethical Hacking"],
   design:["Photoshop","Illustrator","InDesign","CorelDRAW","Canva"],
   office:["Word","Excel","PowerPoint"],
-  system:["Windows","Ubuntu","Kali Linux","Terminal"]
+  system:["Windows","Ubuntu","Kali Linux","Terminal / CLI"]
 };
 let timer;
 function openPopup(type){
