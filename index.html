@@ -3,387 +3,280 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ashik | Portfolio</title>
+<title>Ashik Muhammed | Portfolio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --bg:#000;
+  --accent:#58a6ff;
+  --bg:#0d1117;
   --card:rgba(255,255,255,0.08);
   --text:#fff;
-  --neon:#00ffee;
-  --glow:0 0 15px #00ffee;
+  --muted:#9da5b4;
 }
 
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
 body{
-  background:#000;
+  font-family:'Inter',sans-serif;
   color:var(--text);
-  font-family:'Poppins',sans-serif;
-}
-
-/* BACKGROUND */
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
   background:
-    linear-gradient(rgba(0,0,0,.85),rgba(0,0,0,.9)),
-    url("bg.jpg") center/cover no-repeat;
-  z-index:-1;
+    linear-gradient(rgba(13,17,23,.85),rgba(13,17,23,.85)),
+    url("bg.jpg"); /* 🔁 CHANGE bg.jpg TO YOUR IMAGE */
+  background-size:cover;
+  background-attachment:fixed;
 }
 
-/* HEADER */
+/* NAVBAR */
 header{
   position:fixed;
-  top:0;
+  top:0;left:0;
   width:100%;
-  padding:15px 8%;
   backdrop-filter:blur(12px);
-  background:rgba(0,0,0,.5);
-  z-index:10;
+  background:rgba(13,17,23,.8);
+  z-index:1000;
+}
+.navbar{
+  max-width:1100px;
+  margin:auto;
+  padding:15px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 .logo{
-  font-family:'Orbitron',sans-serif;
-  color:var(--neon);
-  letter-spacing:2px;
+  font-family:'Poppins',sans-serif;
+  font-weight:700;
+  font-size:22px;
+}
+.nav-links{
+  display:flex;
+  gap:20px;
+}
+.nav-links a{
+  color:var(--text);
+  text-decoration:none;
+  font-weight:500;
+}
+.nav-links a:hover{color:var(--accent);}
+
+/* MOBILE MENU */
+.menu-btn{
+  display:none;
+  font-size:26px;
+  cursor:pointer;
+}
+@media(max-width:768px){
+  .menu-btn{display:block;}
+  .nav-links{
+    position:absolute;
+    top:65px;
+    right:20px;
+    background:#161b22;
+    flex-direction:column;
+    padding:15px;
+    border-radius:12px;
+    display:none;
+  }
+  .nav-links.show{display:flex;}
 }
 
-/* HERO */
+/* SECTIONS */
+section{
+  max-width:900px;
+  margin:auto;
+  padding:90px 20px;
+}
+h1,h2,h3,h4{
+  font-family:'Poppins',sans-serif;
+}
 .hero{
-  min-height:90vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
   text-align:center;
-  padding:120px 8% 60px;
+  padding-top:140px;
 }
-.hero img{
-  width:140px;
-  height:140px;
-  border-radius:50%;
-  border:2px solid var(--neon);
-  box-shadow:var(--glow);
-}
-.hero h1{
-  margin-top:16px;
-  font-family:'Orbitron',sans-serif;
-}
-.typing{color:var(--neon)}
+.hero span{color:var(--accent);}
 .btn{
   display:inline-block;
   margin-top:20px;
   padding:12px 28px;
-  border:1px solid var(--neon);
-  border-radius:30px;
-  color:var(--neon);
+  background:var(--accent);
+  color:#000;
+  border-radius:25px;
   text-decoration:none;
-}
-.btn:hover{background:var(--neon);color:#000}
-
-/* SECTIONS */
-section{padding:80px 8%}
-.title{
-  font-family:'Orbitron',sans-serif;
-  color:var(--neon);
-  margin-bottom:30px;
-}
-
-/* GLASS */
-.glass{
-  background:var(--card);
-  border-radius:16px;
-  padding:25px;
-  backdrop-filter:blur(14px);
-}
-
-/* ABOUT */
-.about{line-height:1.9}
-
-/* SKILLS */
-.skill-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:24px;
-}
-.skill-box{
-  text-align:center;
-  padding:30px;
-  cursor:pointer;
-  border-radius:16px;
-  border:1px solid rgba(255,255,255,.2);
+  font-weight:600;
   transition:.3s;
 }
-.skill-box:hover{transform:translateY(-6px);box-shadow:var(--glow)}
-.skill-box span{
-  font-size:2rem;
-  color:var(--neon);
-  display:block;
-}
+.btn:hover{transform:scale(1.05);}
 
-/* POPUP */
-.popup{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.85);
-  display:none;
-  justify-content:center;
-  align-items:center;
-  z-index:20;
-}
-.popup.active{display:flex}
-.popup-content{
+/* CARDS */
+.card, .pill{
   background:var(--card);
-  padding:30px;
-  border-radius:18px;
-  width:90%;
-  max-width:420px;
-  animation:pop .3s ease;
+  backdrop-filter:blur(10px);
+  border-radius:15px;
 }
-@keyframes pop{
-  from{opacity:0;transform:scale(.9)}
-  to{opacity:1;transform:scale(1)}
+.card{
+  padding:20px;
+  margin-bottom:20px;
 }
-.close{
-  float:right;
-  font-size:1.4rem;
-  cursor:pointer;
-  color:var(--neon);
-}
-
-/* CERTIFICATIONS (NEW LAYOUT) */
-.cert-grid{
+.skills{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:24px;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:15px;
+}
+.skills span{
+  padding:15px;
+  text-align:center;
+  border-radius:12px;
+  background:var(--card);
 }
 
-.cert-box h3{
-  color:var(--neon);
-  margin-bottom:15px;
-  font-family:'Orbitron',sans-serif;
-}
-
-.cert-item{
-  margin-bottom:14px;
-}
-
-.cert-item strong{
-  display:block;
-  margin-bottom:4px;
-}
-
-.cert-note{
-  margin-top:15px;
-  font-size:.9rem;
-  color:#ccc;
-  line-height:1.6;
-}
-
-/* CONTACT */
-.contact form{
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-}
-.contact input,
-.contact select,
-.contact textarea{
-  background:transparent;
-  border:1px solid rgba(255,255,255,.3);
-  padding:10px;
-  color:#fff;
-  border-radius:8px;
-}
-.contact button{
-  background:var(--neon);
+/* RESUME */
+.resume{
+  background:#fff;
   color:#000;
-  border:none;
-  padding:12px;
-  border-radius:30px;
-  cursor:pointer;
+  padding:30px;
+  border-radius:15px;
 }
+.resume h4{margin-top:20px;}
+.muted{color:#555;}
 
-/* TOAST */
-.toast{
-  position:fixed;
-  bottom:30px;
-  right:30px;
-  background:#111;
-  color:#0f0;
-  padding:14px 20px;
-  border-radius:10px;
-  display:none;
-}
+/* LIST */
+ul{margin-left:18px;margin-top:10px;}
+li{margin-bottom:6px;}
 
 /* FOOTER */
 footer{
   text-align:center;
-  padding:40px;
-  color:#aaa;
-  border-top:1px solid rgba(255,255,255,.15);
+  padding:25px;
+  color:var(--muted);
+}
+
+/* ANIMATIONS */
+.reveal{
+  opacity:0;
+  transform:translateY(40px);
+  transition:.8s ease;
+}
+.reveal.active{
+  opacity:1;
+  transform:none;
 }
 </style>
 </head>
 
 <body>
 
-<header><div class="logo">Ashik Muhammed</div></header>
-
-<!-- HERO -->
-<div class="hero">
-  <div>
-    <img src="bg.jpg" alt="profile">
-    <h1>I’m Ashik Muhammed</h1>
-    <div class="typing" id="typing"></div>
-    <a href="resume.pdf" class="btn" download>Download Resume</a>
+<header>
+  <div class="navbar">
+    <div class="logo">Ashik</div>
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+    <nav class="nav-links" id="nav">
+      <a href="#home">Home</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#qualifications">Qualifications</a>
+      <a href="#resume">Resume</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </div>
-</div>
+</header>
 
-<!-- ABOUT -->
-<section>
-  <h2 class="title">About Me</h2>
-  <div class="glass about">
-    I focus on understanding systems deeply — how they work, how they fail,
-    and how they can be improved. My interests include cyber security,
-    web development, operating systems, and digital design.
+<section id="home" class="hero reveal">
+  <h1>Hi, I'm <span>Ashik Muhammed</span></h1>
+  <p>Web Developer • Tech Enthusiast • Self Learner</p>
+  <a href="#resume" class="btn">View Resume</a>
+</section>
+
+<section id="skills" class="reveal">
+  <h2>Skills</h2>
+  <div class="skills">
+    <span>HTML</span><span>CSS</span><span>JavaScript</span>
+    <span>Python</span><span>Linux / Termux</span><span>Git & GitHub</span>
   </div>
 </section>
 
-<!-- SKILLS -->
-<section>
-  <h2 class="title">Skills</h2>
-  <div class="skill-grid">
-    <div class="glass skill-box" onclick="openPopup('web')"><span>💻</span>Web & Cyber</div>
-    <div class="glass skill-box" onclick="openPopup('design')"><span>🎨</span>Graphic Design</div>
-    <div class="glass skill-box" onclick="openPopup('office')"><span>📊</span>Microsoft Office</div>
-    <div class="glass skill-box" onclick="openPopup('system')"><span>🖥️</span>Computer & Terminal</div>
+<section id="projects" class="reveal">
+  <h2>Projects</h2>
+  <div class="card">
+    <h3>Portfolio Website</h3>
+    <p>Responsive animated portfolio with resume integration.</p>
+  </div>
+  <div class="card">
+    <h3>Automation Scripts</h3>
+    <p>Linux & Termux scripts without root access.</p>
   </div>
 </section>
 
-<!-- POPUP -->
-<div class="popup" id="popup">
-  <div class="popup-content">
-    <span class="close" onclick="closePopup()">×</span>
-    <h3 id="popupTitle"></h3>
-    <ul id="popupList"></ul>
-  </div>
-</div>
-
-<!-- CERTIFICATIONS -->
-<section>
-  <h2 class="title">Certifications</h2>
-
-  <div class="cert-grid">
-
-    <!-- Professional Qualifications -->
-    <div class="glass cert-box">
-      <h3>Professional Qualifications</h3>
-
-      <div class="cert-item">
-        <strong>Cyber Security Fundamentals</strong>
-        <small>XYZ Platform · 2024</small>
-      </div>
-
-      <div class="cert-item">
-        <strong>Ethical Hacking Basics</strong>
-        <small>Online Training · 2023</small>
-      </div>
-
-      <div class="cert-note">
-        Formal and career-oriented qualifications focused on
-        security, systems, and professional skill development.
-      </div>
-    </div>
-
-    <!-- Other Certifications -->
-    <div class="glass cert-box">
-      <h3>Other Certifications</h3>
-
-      <div class="cert-item">
-        <strong>Graphic Design Basics</strong>
-        <small>ABC Institute · 2023</small>
-      </div>
-
-      <div class="cert-item">
-        <strong>MS Office Productivity</strong>
-        <small>Self-Learning</small>
-      </div>
-
-      <div class="cert-note">
-        Additional certifications, workshops, and self-learning
-        achievements that support creativity and productivity.
-      </div>
-    </div>
-
+<section id="certifications" class="reveal">
+  <h2>Certifications</h2>
+  <div class="card">
+    <ul>
+      <li>Web Development Fundamentals</li>
+      <li>Cyber Security Basics</li>
+      <li>Linux Command Line Essentials</li>
+    </ul>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section>
-  <h2 class="title">Contact</h2>
-  <div class="glass contact">
-    <form id="contactForm">
-      <input id="name" placeholder="Your name" required>
-      <input id="email" type="email" placeholder="Your email" required>
-      <select id="subject">
-        <option>Collaboration</option>
-        <option>Project Discussion</option>
-        <option>Feedback</option>
-      </select>
-      <textarea id="message" placeholder="Message" required></textarea>
-      <label id="captchaLabel"></label>
-      <input id="captchaInput" placeholder="Answer" required>
-      <button type="submit">Send Email</button>
-    </form>
+<section id="qualifications" class="reveal">
+  <h2>Qualifications</h2>
+  <div class="card">
+    <ul>
+      <li>Bachelor / Diploma / Higher Secondary</li>
+      <li>Strong self-learning & practical experience</li>
+    </ul>
   </div>
 </section>
 
-<footer>© 2026 Ashik Muhammed</footer>
-<div class="toast" id="toast">Email ready ✔</div>
+<section id="resume" class="reveal">
+  <h2>Resume</h2>
+  <div class="resume">
+    <h3>ASHIK MUHAMMED</h3>
+    <p class="muted">India • yourmail@email.com • github.com/yourusername</p>
+
+    <h4>Professional Summary</h4>
+    <p>Detail-oriented developer with hands-on experience in web technologies and automation.</p>
+
+    <h4>Technical Skills</h4>
+    <ul>
+      <li>HTML, CSS, JavaScript, Python, Bash</li>
+      <li>Responsive Design</li>
+      <li>Git, GitHub, Linux</li>
+    </ul>
+
+    <h4>Education</h4>
+    <p>Higher Secondary / Diploma / Bachelor</p>
+  </div>
+</section>
+
+<section id="contact" class="reveal">
+  <h2>Contact</h2>
+  <p>Email: yourmail@email.com</p>
+  <p>GitHub: github.com/yourusername</p>
+</section>
+
+<footer>
+  © 2026 Ashik Muhammed
+</footer>
 
 <script>
-/* TYPING */
-const text=["Cyber Security Learner","Creative Technologist","Silent Builder"];
-let i=0,j=0,t=document.getElementById("typing");
-(function type(){j<text[i].length?(t.textContent+=text[i][j++],setTimeout(type,80)):setTimeout(erase,1200)})();
-function erase(){j?(t.textContent=text[i].slice(0,--j),setTimeout(erase,40)):(i=(i+1)%text.length,setTimeout(type,300))}
-
-/* POPUP */
-const skills={
-  web:["HTML","CSS","JavaScript","Cyber Security","Ethical Hacking"],
-  design:["Photoshop","Illustrator","InDesign","CorelDRAW","Canva"],
-  office:["Word","Excel","PowerPoint"],
-  system:["Windows","Ubuntu","Kali Linux","Terminal / CLI"]
-};
-let timer;
-function openPopup(type){
-  popup.classList.add("active");
-  popupTitle.textContent=type.toUpperCase();
-  popupList.innerHTML=skills[type].map(s=>`<li>• ${s}</li>`).join("");
-  clearTimeout(timer);
-  timer=setTimeout(closePopup,10000);
+function toggleMenu(){
+  document.getElementById("nav").classList.toggle("show");
 }
-function closePopup(){popup.classList.remove("active")}
-popup.onclick=e=>{if(e.target===popup)closePopup()}
-document.addEventListener("keydown",e=>{if(e.key==="Escape")closePopup()});
 
-/* CONTACT */
-let a=Math.floor(Math.random()*10)+1,b=Math.floor(Math.random()*10)+1;
-captchaLabel.textContent=`Human check: ${a}+${b}=?`;
-contactForm.onsubmit=e=>{
-  e.preventDefault();
-  if(+captchaInput.value!==a+b)return;
-  const mail=
-    `mailto:yourmail@gmail.com?subject=${encodeURIComponent(subject.value)}&body=`+
-    encodeURIComponent(`From: ${name.value} (${email.value})\n\n${message.value}`);
-  toast.style.display="block";
-  setTimeout(()=>toast.style.display="none",3000);
-  window.location.href=mail;
-};
+/* Scroll reveal */
+const reveals=document.querySelectorAll(".reveal");
+window.addEventListener("scroll",()=>{
+  reveals.forEach(el=>{
+    if(el.getBoundingClientRect().top<window.innerHeight-100){
+      el.classList.add("active");
+    }
+  });
+});
 </script>
 
 </body>
